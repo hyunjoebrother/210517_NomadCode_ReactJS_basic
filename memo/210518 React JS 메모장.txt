@@ -95,7 +95,7 @@ app.js에 보이는 <App />
 component : HTML을 반환하는 함수.
 우리는 function, application을 가지고 있고, 이것은 html을 반환할 거임
 
-이렇게 js랑 html 조합을 'JSX'라고 부름. (React에서 유일한 개념)
+이렇게 js + html = 'JSX'라고 부름. (React에서 유일한 개념)
 js 안의 HTML
 
 ## 이제 Component를 만들어보자!!! ##
@@ -127,33 +127,168 @@ Browser가 이해할 수 있는 평범한 일반 HTML로 만들었음 굿굿
 
 Ch2-1 : Reusable Components with JSX + Props
 
+이제 Potato.js 파일 지우고 해보자
+App.js에서 Component 따로 작업해보자 -> 작동함
+
+이제 Component에 정보를 보내보자
+-> 재사용 가능한 Component를 만들자!
+ex) 20개 Potato 출력하고 싶을 때
+-> Component에서 Component로,
+child component로 정보를 보내보자
+
+App application에서 Food Component로 정보를 보내고
+그 다음에 Food component에서
+그 정보를 어떻게 사용할 것인지.
+
+<Food name = "kimchi" /> 설정을 하자
+HTML에서 class 느낌 ㅇㅇ 이름 속성
+이제 우린 kimchi라는 value로 prop 이름을 지정했다
+-> name -> favorite 바꿔주자
+
+<Food fav = "kimchi" />
+: Food Component에 fav라는 이름의 property를
+kimchi라는 value로 줌
+
+-> "React Magic"을 이용해서 props를 사용하자
+-> 여기서 React는 우리가 전달한 props를 가져가는 일을 함
+ex. something = {true} ~~~~
+-> 이렇게 원하는만큼 father Comp.에서 child Comp.로 
+많은 props 보낼 수 있다
+
+-> 누가 Food Comp.로 정보를 보내려고 하면
+React는 이 모든 속성을 가져올 거임
+그리고 Food function Comp.의 argrument 인자로 넣을 거임
+function Food(props) {}
+-> console.log(props)로 확인해보자
+-> Object 안에 Comp.로 전달된 모든 props가 들어있음
+
+이제 JS의 최신 버전 es6의 magic을 사용해보자
+function Food({ fav }) { }
+나는 Object를 열어서 Object 안에 있는 fav를 꺼낼 거임
+-> props object 내부에는 fav가 있음
+-> 내부에서 얻도록 한다!
+I like {fav} 로 적용하면 I like kimchi 출력!!!
+
+이제 하단 function App()에서 
+      <Food fav = "kimchi" />
+      <Food fav = "ramen" />
+      <Food fav = "kimbob" />
+      <Food fav = "Chicken" />
+이러면 바로 쉽게 여러개 출력된다.
+
+결론 : 동적 data가 있는 Comp를 통해서
+JSX + props를 통해서 모두 재사용 가능하다!
+
+
+
+Ch2-2 : Dynamic Component Generation
+
+
+지금까지는 꽤 귀찮음 ㅇㅇ 직접 하나하나 추가해줘야함
+우리가 처음부터 가진 data가 아니기 때문!
+이제 웹사이트에 동적 data를 추가해보자
+이미 data가 API에서 왔다고 상상해보자
+
+함수를 만들어보자
+foodLike라고 불리는 array 생성
+-> Food의 object에 대한 배열인데
+기본적으로 이 모든 Comp들을 rendering할 거임
+하지만 역동적임 ㅠ
+이제 object의 list를 가져오고,
+function Food Comp.를 동적으로 rendering해보자
+
+이제 이 긴 걸 array로 가져오고 
+자동적으로 내가 좋아하는 Food 이름을 함께 rendering하자
+그래서 JS function 'map'을 이용하자
+
+* map
+: array의 각 item에서 함수를 실행하는 array를 가지는 함수
+-> 그 함수의 result를 갖는 array를 너에게 준다. return
+map은 function을 취해서 그 함수를 array의 각 item에 적용함
+
+이제 function App에 작업해보자
+dish라는 object 선언하자 ㅇㅇ 각각의 items임
+=> 와 함께 return된다. 즉 Food Comp.가 반환
+우리는 Food 각각의 name이 필요해
+dish object 안에는 name, image가 있어서
+{dish.name}으로 지정하자.
+image도 추가해주자
+
+
+Ch2-3 : map Recap
+
+앞에서 map으로 한 작업을 renderFood 함수로 선언하자
+{foodLike.map(renderFood)}
+이제 함수 작업하자 ㅇㅇ 결론적으로 똑같음
+이 작업을 하면 기본적으로 여기에 food Comp와 같은 array가 옴
+근데 에러뜸
+-> list 안에 들어가면 유일하지 않아서!
+-> foodLike[]에 id를 지정해주자
+-> 모든 element가 다르게 보일 거임
+
+이제 Food Comp.에 key로 promp를 주자
+App() 작업
+<Food key = {dish.id} ~
+이건 Food 함수에 지정한 게 아님 ㅇㅇ 
+React 내부에서 사용하기 위함이다!
+
+F12로 코드 확인하면 HTML로 잘 나온다!!
+다음에는 우리가 원하는 props를 받고 있는지 체크하는 방법!
+
+
+Ch2-4 : Protection with PropTypes
+
+props 점검을 하자
+rating (평가)를 각 list 내에 추가하자
+App()에도 추가해주자 {dish.rating}
+그리고 Food()에도
+점점 많은 props를 나의 Food object에 전달하기 위해서~
+
+터미널로 prop types 설치하자
+$npm i prop-type
+: 내가 전달받은 props가 원하는 애인지 확인, 점검해준다
+실수 방지 ㅇㅇ
+pakage.json에서 잘 설치되었는지 확인 ㄱㄴ "dependencies"
+
+이제 App.js 앞에 import해준다
+import PropTypes from "prop-types";
+Food Comp에도 추가해주자
+
+Food() 아래에 내가 얻고 싶은 props에 대한 설명 추가하자
+이제 우리는 Food.propTypes에 가서 props를 체크할 거임
+console 창에서 Error 확인 가능 (ex. string -> number형)
+* Required 안 써도 ㄱㅊ
+* 구글링하면 점검 방법 check
+
+다음부터 state라는 새로운 개념에 대해서 배워보자
+
+
+Ch3-0 : Class Components and State
 
 
 
 
-# JavaScript : 웹에 쓰이는 하나뿐인 언어
-# Vanilla JS : 아무것도(library, framework) 없는 js, 브라우저를 통해 제공 
 
 
-210302 Ch1-6 : Variable 변수
 
-$console.log() : 실행
-*변수를 생성해보자
-Create -> Initialize -> Use
-let a = 17; -> let b = a - 5; -> console.log(b);
 
-210304 Ch1-7 : let, const, var
 
-const : 상수, stable, 변하지 않음, 재선언 금지, 재할당 금지
-let : 값 변경 허용, 재선언 금지, 재할당 가능
-var : variable 값 변경 허용, 재선언 가능, 재할당 가능
 
-* 변수 첫 사용은 const로 하자
-* "..." 는 text 취급, string
-* bool -> true/false : text 아님
-* float : 소숫점
 
-## Organizing Data by Array & Object
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
