@@ -1,0 +1,66 @@
+210518 React JS - 영화 웹 서비스 만들기 start
+
+-> 멍냥 Web & 인하여우비 App project 기릿
+
+Ch0-3 : Why React
+
+- 많이 씀,,,
+- 정보, 커뮤가 많음 == 구글링 편하다는 뜻
+- 취업취업
+
+
+Ch1-0 : Creating your first React App
+
+- node.js, npm, npx 다운하자
+해당 폴더로 가서
+$npx create-react-app movie_app (폴더이름)
+-> 폴더 생성 완료
+-> 생성 폴더로 가서 
+$yarn start 아니면 VSC에서 직접 폴더 열기
+-> Readme.md 내용 지우고 설명 작성
+
+* pakage.json 안에 명령어가 있음 
+-> "scripts"에서 start, build 만 남기고 지우자 (필요없음)
+
+* yarn.lock 파일 삭제 (uarn은 npm)
+
+이제 터미널에서 첫번째 application을 실행하자
+$npm start
+-> 개발 서버가 실행
+-> browser에서도 볼 수 있고 wi-fi 폰 테스트할 때 url 가능
+
+
+Ch1-1 : Creating a Github Repository
+
+
+
+
+
+# JavaScript : 웹에 쓰이는 하나뿐인 언어
+# Vanilla JS : 아무것도(library, framework) 없는 js, 브라우저를 통해 제공 
+
+
+210302 Ch1-6 : Variable 변수
+
+$console.log() : 실행
+*변수를 생성해보자
+Create -> Initialize -> Use
+let a = 17; -> let b = a - 5; -> console.log(b);
+
+210304 Ch1-7 : let, const, var
+
+const : 상수, stable, 변하지 않음, 재선언 금지, 재할당 금지
+let : 값 변경 허용, 재선언 금지, 재할당 가능
+var : variable 값 변경 허용, 재선언 가능, 재할당 가능
+
+* 변수 첫 사용은 const로 하자
+* "..." 는 text 취급, string
+* bool -> true/false : text 아님
+* float : 소숫점
+
+## Organizing Data by Array & Object
+
+
+
+
+
