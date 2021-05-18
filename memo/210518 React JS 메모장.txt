@@ -265,26 +265,114 @@ console 창에서 Error 확인 가능 (ex. string -> number형)
 
 Ch3-0 : Class Components and State
 
+Food 예제 ㅂㅂ
+State : 우리가 동적 data와 함께 작업할 때 만들어진다
+State는 Dynamoc data를 위한 것. 
+(이전 Food 예제는 정적인 data, 직접 하나하나 넣음)
+(그리고 아까우니까 Appfood.js 라는 이름으로 바꿔주자)
+
+이번 Ch3 예제는 Appstate.js 에서 작업하자
+
+그동안 함수 만든 것들 'function(class) Comp'라고 부름
+class App extends React.Component
+-> 클래스 App은 React Component임
+
+우리가 매번 component 만들 때 모든걸 구현 
+-> 골라서 구현해보자!
+-> extends확장 class를 가지게 된다.
+
+기본적으로 React class Comp에 가져오고
+우리는 확장을 시켜보자
+원래 class React Comp는 함수가 아니라서 return이 없음
+-> 우리가 React Comp에서 확장해서 render method를 가지게 됨
+
+* class Comp vs function Comp
+function Comp는 함수라서 뭔가를 return 후 screen에 표시
+class Comp는 class임 하지만 react Comp로부터 확장되어
+-> return method 가지게 되면서 screen에 표시된다
+
+-> React는 모든 class Comp의 render method를 자동 실행!!!
+이제 class Comp에는 state라는 것이 있다.
+
+* state
+: object임 Comp의 data를 넣을 공간이 있으며, 이 data는 변함 
+이게 바로 너가 state를 사용해야하는 이유 .EU
+
+이제 너가 바꿀 data를 state안에 넣자
+그리고 state를 render에 넣고 싶으면 {this.state.count} ㄱㄱ
+*** state.count로 안 쓰는 이유가 class라서 this로 함
+
+이제 number 0이라 뜰 거임
+하지만 우리는 state에 바꾸고 싶은 data를 넣을 거임
+-> 어떻게 App에서 data를 바꿀 것인가???
+
+이제 ADD, MINUS 버튼 2개를 만들 거임
+class 내에 js로 각각 함수를 만들자
+add = () => {};
+
+원래 JS는 click 기능할 때 addEventListener 어쩌구 해야함
+React는 자동으로 onClick만 넣으면 끝
+* this.add() : 즉시, this.add : 클릭할 때만
+-> 이제 버튼 누르면 console.log 숫자 올라간다!
+
+다음에는 state를 업데이트해보자!!
 
 
+Ch3-1 : All you need to know about State
+
+'state'를 직접 변경할 수 없음, 동작도 안함 ㅅㄱ
+render function은 자동 초기화 x
+-> 매번 state의 상태를 변경할 때는
+React가 render function을 호출해서 바꿔줘야함
+
+-> setState() 함수를 호출하면 언제 refresh할지 React는 알게 된다
+-> add 함수에 this.setState({count:1})
+-> state는 object라서 setState는 새로운 state를 받아야 함
+근데 그냥 1이랑 -1만 출력됨 ㅅㄱ
+
+이제 다시 바꿔주자 count : this.state.count + 1
+-> 이러면 잘 굴러감 ㅇㅇ
+
+* 앞방법은 React가 좋은 애라서 좀 허락해준 거임
+current => ({count : current.count + 1})
+-> state를 set할 때 외부 상태에 의존하지 않고 '현재' 값 사용함
 
 
+결론 : setState로 새로운 state와 함께 render function 호출된다
 
 
+Ch3-2 : Component Life Cycle
+
+render말고 다른 걸 알아보자
+
+* life cycle method
+: React가 Comp를 생성하고 없애는 방법
+
+* mounting
+: born
+Comp가 mount되어 screen에 표시될 때 
+- constructor() 먼저 만든다(호출)
+- 그 다음에 render()
+- 마지막으로 componentDidMount() : 우리한테 알려주는 용
+
+* Updating
+: 너가 아는 그거 
+state 변결할 때 등등
+- render() 후에 componentDidUpdate() 호출
+
+* Unmounting
+: Comp가 죽음 
+page 바꿀 때 등등
+- componentWillUnmount() 호출
+
+다음에는 data를 fetch할 거임
 
 
+Ch3-3 : Planning the Movie Component
 
-
-
-
-
-
-
-
-
-
-
-
+지금까지 Component Life Cycle을 알아봄
+이제 우리 실습 Movie Component를 구성해보자
+-> App.js 파일 새로 파자
 
 
 
