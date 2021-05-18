@@ -2,12 +2,15 @@
 
 -> 멍냥 Web & 인하여우비 App project 기릿
 
+## Ch 0. Introduction
+
 Ch0-3 : Why React
 
 - 많이 씀,,,
 - 정보, 커뮤가 많음 == 구글링 편하다는 뜻
 - 취업취업
 
+## Ch 1. Setup
 
 Ch1-0 : Creating your first React App
 
@@ -86,6 +89,8 @@ apllication이 이것을 실행할 때,
 * virtual DOM : 소스코드에 존재하지 않음! -> 작업이 빠름
 -> react가 만들어낸다
 
+
+## Ch 2. JSX & Props
 
 Ch2-0 : Creating your first React Component
 
@@ -263,6 +268,8 @@ console 창에서 Error 확인 가능 (ex. string -> number형)
 다음부터 state라는 새로운 개념에 대해서 배워보자
 
 
+## Ch 3. State
+
 Ch3-0 : Class Components and State
 
 Food 예제 ㅂㅂ
@@ -372,7 +379,50 @@ Ch3-3 : Planning the Movie Component
 
 지금까지 Component Life Cycle을 알아봄
 이제 우리 실습 Movie Component를 구성해보자
--> App.js 파일 새로 파자
+-> App.js 파일 새로 파고 기본 세팅하자
+
+import React from "react";
+
+class App extends React.Component {
+    render() {
+        return <div></div>;
+    }
+}
+
+export default App;
+
+
+먼저 application을 mount하면 생겨나는 것임
+-> isLoading : true
+
+* JS 문법 - 삼항 연산자 ternary operator
+{isLoading ? "Loading" : "We are ready"}
+만약 true면 Loading, true가 아니면 ready 보여줘
+
+이제 this.state로 작동시키자
+처음에 우리가 render하면 호출되는 life cycle method는??
+-> componentDidMount()
+: Comp가 mount 즉시 호출된다
+-> setTimeout() : delay function
+여기에 this.setState()로 6000ms 후에 변하도록 설정 
+
+* fetch : API를 불러오고 정보를 내보내 주기도 하는 함수
+우리가 할 일은 componentDidMount에서 data를 fetch하기
+-> API로부터 data fetching 끝나면
+"we are ready"대신에 movie를 render하고
+map을 만들고 movie를 render한다
+
+이제 state에 movies라는 state 만들고 array 채울 거임
+
+다음 시간에는 React에서 data를 fetching 해보자
+
+
+## Ch 4. Making the Movie App
+
+Ch4-0 : Fetching Movies from API
+
+
+
 
 
 
