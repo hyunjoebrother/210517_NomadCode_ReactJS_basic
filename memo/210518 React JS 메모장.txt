@@ -421,6 +421,68 @@ map을 만들고 movie를 render한다
 
 Ch4-0 : Fetching Movies from API
 
+fetch하기 위해 axios를 사용하자 ㅇㅇ 
+$npm install axios
+
+YTS에서 만든 API를 사용하자
+-> List Movies 링크 따오자
+https://yts.mx/api/v2/list_movies.json - 토렌트라 링크 계속 바뀜
+(이거 쓰자) https://yts-proxy.now.sh/list_movies.json
+
+App.js 상단에 axios를 import하고
+import axios from "axios"
+
+componentDidMount에 API 링크 입력
+componentDidMount() {
+        axios.get("https://yts-proxy.now.sh/list_movies.json");
+    }
+-> loading 계속 나옴
+
+우리는 axios로부터 온 data를 잡아야한다
+왜냐면 axios가 movie 리스트를 줌 
+-> data를 잡아서 state에 써먹자 
+
+실행하는데 시간이 걸려서 getMovies 따로 만들고 기다리자
+-> async 이 함수는 비동기다. 넌 기다려야함
+await : 무엇을 기다려야해요?
+-> axios가 실행 다 끝날 때 까지!!
+
+(복습)
+application은 render을 함
+처음에는 isLoading : true
+-> 그래서 Loading을 보자
+-> 이제 application이 mount된 후, 우리는 getMovies() 호출할 거임
+-> 그리고 getMovies는 axios.get을 사용함
+-> 하지만 axios.get은 완료되기까지 시간이 좀 걸려서
+-> await를 넣음 -> 이를 위헤 외부에 async 함수가 필요
+-> 즉, async await를 하는 것은 우리가 기본적으로
+js에게 getMovies 함수에게 조금 시간이 필요하고 기다리라고 하는 겨
+-> 우리는 접근 끝날 때까지 기다린다!!
+
+다음에는 movie data를 가져와서 state에 있는 render 함수 보여주자
+
+
+Ch4-1 : Rendering the Movies
+
+
+
+
+
+
+
+
+
+
+
+스타필드
+멋사 세션 강의 듣고
+js하고
+
+멋사하고 + 목욜 자취방팟 약속 시간 정하기
+
+리액트하다가
+
+수욜 11시 쯤에 디자인 회의!
 
 
 
