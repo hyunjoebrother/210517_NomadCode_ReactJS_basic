@@ -511,7 +511,16 @@ JSX는 className으로 써줘야함
 
 Ch4-4 : Styles Timelapse
 
+Ch4-5 : Cutting the summary
 
+텍스트를 통일해보자
+-> js 로 summary array 자르자
+.slice()로 적당히 자르자
+<p className = "movie__summary">{summary.slice(0, 140)}...</p>
+            
+
+적당히 끝남 ㅇㅇ
+-> 이제 React로 내 프로젝트 직접 해보자
 
 
 
